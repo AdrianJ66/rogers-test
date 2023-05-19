@@ -1,11 +1,12 @@
-package com.rogers.test2.domain;
+package com.rogers.test2.dto.rest;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
-@ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EntryFields {
 
     @JsonProperty("title")
@@ -18,6 +19,15 @@ public class EntryFields {
     private String canonicalURL;
 
     @JsonProperty("isNoIndex")
-    private Boolean isNoIndex;
+    private String isNoIndex;
 
+    @Override
+    public String toString() {
+        return "{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", url='" + canonicalURL + '\'' +
+                ", isNoIndex=" + isNoIndex +
+                '}';
+    }
 }
