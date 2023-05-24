@@ -1,5 +1,7 @@
 package com.rogers.test2.parser;
 
+import com.rogers.test2.dto.common.Category;
+
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -29,9 +31,9 @@ public class PageTemplateFieldParser {
         return Objects.isNull(original) ? "null" : original.toString();
     }
 
-    public String parseCategory(String original) {
+    public Category parseCategory(String original) {
         if (Objects.isNull(original))
-            return "{\n1. \"null\"%s\n2. \"null\"\n}";
+            return new Category();
 
         var pattern = "\\/home\\/(.*?)\\/(.*)";
         var regex = Pattern.compile(pattern);
@@ -51,7 +53,7 @@ public class PageTemplateFieldParser {
             group2 = "null";
         }
 
-        return String.format("{\n1. %s\n2. %s\n}", group1, group2);
+        return new Category(group1, group2);
     }
 
     private String capitalizeFirstLetter(String str) {

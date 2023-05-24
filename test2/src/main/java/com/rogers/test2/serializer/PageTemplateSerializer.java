@@ -29,7 +29,7 @@ public class PageTemplateSerializer extends StdSerializer<PageTemplate> {
         jsonGenerator.writeStringField("title", parser.parseTitle(pageTemplate.getTitle()));
         jsonGenerator.writeStringField("description", parser.parseDescription(pageTemplate.getDescription()));
         jsonGenerator.writeStringField("isNoIndex", parser.parseIsNoIndex(pageTemplate.getIsNoIndex()));
-        jsonGenerator.writeStringField("category", parser.parseCategory(pageTemplate.getUrl()));
+        jsonGenerator.writeObjectField("category:", parser.parseCategory(pageTemplate.getUrl()));
         jsonGenerator.writeEndObject();
     }
 
